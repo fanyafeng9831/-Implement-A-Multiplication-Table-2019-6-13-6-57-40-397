@@ -27,15 +27,44 @@ function getMulTable(start, end){
     for(var i=start; i<=end; i++){
         for (var j=start; j<=i; j++){
             mulTable+=j+"*"+i+"="+i*j;
-            if(i!==j){
+            if(i!==j)
                 mulTable += "  "
             }
         }
           if(i<end) {
               mulTable+="\r\n";
-          }
+          ret
     }
-    return mulTable;
+	function getLine(start,end){
+	let temp = [];
+	for (let i = 0; i<=end-start;i++) {
+	temp[i] = getItem(i+start, end);
+	}
+	return temp;
+	}
+	
+	function getItem(left, right) {
+	let temp;
+	temp = `${left}*${right}=${left*right}`;
+	return temp;
+	}
+	function multiplyToTable(multiplyTable){
+	var result = "";
+	for (let i = 0;i < multiplyTable.length;i++){
+	for (let j=0;j < multiplyTable[i].length;j++){
+	if(i == multiplyTable.length-1 && j == multiplyTable[i].length-1){
+	result += multiplyTable[i][j];
+	break;
+	}else if (multiplyTable[i][j+1]==null){
+	result += multiplyTable[i][j]+'\r\n';
+	break;
+	}else{
+	result += multiplyTable[i][j]+" ";
+	}
+	}
+	}
+	return result;
+
 }
 
 module.exports = createMulTable;
